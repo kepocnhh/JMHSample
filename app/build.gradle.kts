@@ -16,10 +16,18 @@ tasks.getByName<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>("compileKotlin"
 }
 
 jmh {
-    iterations.set(1)
+    excludes.set(setOf("FooBenchmark"))
+    batchSize.set(1)
     fork.set(1)
+    iterations.set(1)
+    jmhTimeout.set("64s")
     jmhVersion.set("1.36")
-    warmupIterations.set(1)
-    warmup.set("1s")
     resultFormat.set("JSON")
+    warmup.set("1s")
+    warmupBatchSize.set(1)
+    warmupForks.set(0)
+    warmupIterations.set(0)
+    threads.set(Thread.activeCount())
+    verbosity.set("NORMAL")
+    operationsPerInvocation.set(1)
 }
