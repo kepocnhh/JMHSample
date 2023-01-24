@@ -1,14 +1,8 @@
 repositories.mavenCentral()
 
 plugins {
-    id("application")
     id("org.jetbrains.kotlin.jvm")
-}
-
-dependencies {}
-
-application {
-    mainClass.set("test.jmh.sample.AppKt")
+    id("me.champeau.jmh") version "0.6.8"
 }
 
 val jvmTarget = "11"
@@ -19,4 +13,13 @@ tasks.getByName<JavaCompile>("compileJava") {
 
 tasks.getByName<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>("compileKotlin") {
     kotlinOptions.jvmTarget = jvmTarget
+}
+
+jmh {
+    iterations.set(1)
+    fork.set(1)
+    jmhVersion.set("1.36")
+    warmupIterations.set(1)
+    warmup.set("1s")
+    resultFormat.set("JSON")
 }
