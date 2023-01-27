@@ -1,3 +1,3 @@
 rootProject.name = "JMHSample"
 
-include("app")
+include("lib", "jmh")
