@@ -1,8 +1,6 @@
 /*
-!/jmh/src
-!/jmh/build.gradle.kts
-!/lib/src
-!/lib/build.gradle.kts
+!/jmh
+!/lib
 !.gitignore
 !build.gradle.kts
 !settings.gradle.kts
