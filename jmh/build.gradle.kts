@@ -3,6 +3,7 @@ repositories.mavenCentral()
 plugins {
 //    `java-library`
     id("org.jetbrains.kotlin.jvm")
+    kotlin("kapt")
 }
 
 val jmhVersion = "1.36"
@@ -10,15 +11,23 @@ val jmhVersion = "1.36"
 dependencies {
     implementation(project(":lib"))
     implementation("org.openjdk.jmh:jmh-core:$jmhVersion")
-    implementation("org.openjdk.jmh:jmh-generator-bytecode:$jmhVersion")
+//    implementation("org.openjdk.jmh:jmh-generator-bytecode:$jmhVersion")
+//    annotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:$jmhVersion")
+    kapt("org.openjdk.jmh:jmh-generator-annprocess:$jmhVersion")
 }
 
-task<JavaExec>("runBenchmark") {
-//    dependsOn("classes")
-//    dependsOn("jmhRunBytecodeGenerator")
-    dependsOn("jmhRuntimeClasspath")
+task<JavaExec>("runBenchmarkJava") {
+    dependsOn("classes")
     mainClass.set("org.openjdk.jmh.Main")
     classpath = sourceSets.main.get().runtimeClasspath
+}
+
+task<JavaExec>("runBenchmarkKotlin") {
+    dependsOn("classes")
+//    dependsOn("jmhRunBytecodeGenerator")
+//    dependsOn("jmhRuntimeClasspath")
+    mainClass.set("org.openjdk.jmh.Main")
+//    classpath = sourceSets.main.get().runtimeClasspath
     classpath = files(
         sourceSets.main.get().runtimeClasspath,
         File(buildDir, "generated/resources"),

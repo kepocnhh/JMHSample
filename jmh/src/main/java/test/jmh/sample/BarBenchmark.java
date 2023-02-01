@@ -44,13 +44,13 @@ import java.util.concurrent.TimeUnit;
  * </pre>
  *
  */
-//@BenchmarkMode(Mode.AverageTime)
-//@OutputTimeUnit(TimeUnit.MILLISECONDS)
-//@Fork(value = 1, warmups = 0)
-//@Measurement(iterations = 1, time = 1)
-//@Warmup(iterations = 0)
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(TimeUnit.MILLISECONDS)
+@Fork(value = 1, warmups = 0)
+@Measurement(iterations = 1, time = 1)
+@Warmup(iterations = 0)
 public class BarBenchmark {
-//    @Benchmark
+    @Benchmark
     public void mySqrtBenchmark() {
         Bar.INSTANCE.mySqrt(16.0);
     }
